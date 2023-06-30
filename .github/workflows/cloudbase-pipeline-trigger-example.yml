@@ -1,0 +1,26 @@
+
+name: deploy
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  deploy:
+    uses: cc332030/gradle/.github/workflows/deploy-image-dockerfile.yml@master
+    secrets:
+      REGISTRY_USERNAME: ${{ github.actor }}
+      REGISTRY_PASSWORD: ${{ secrets.DOCKER_TOKEN }}
+  cloudbase-pipeline-trigger:
+    uses: cc332030/tencent/.github/workflows/cloudbase-pipeline-trigger.yml@main
+    needs: [ deploy ]
+    secrets:
+      USERNAME: ${{ secrets.CLOUDBASE_USERNAME }}
+      PASSWORD: ${{ secrets.CLOUDBASE_PASSWORD }}
+      URL: ${{ secrets.CLOUDBASE_URL }}
+      TCR_REGISTRY_CREDENTIAL: ${{ secrets.TCR_REGISTRY_CREDENTIAL }}
+      TCR_NAMESPACE_NAME: ${{ secrets.TCR_NAMESPACE_NAME }}
+      OWNER: ${{ secrets.OWNER }}
+      REPOSITORY_NAME: ${{ secrets.REPOSITORY_NAME }}
+      BRANCH: ${{ secrets.BRANCH }}

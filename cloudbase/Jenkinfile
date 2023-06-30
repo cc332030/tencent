@@ -1,0 +1,29 @@
+pipeline {
+  agent any
+  stages {
+    stage('构建镜像') {
+      steps {
+        sh "docker pull ${OWNER}/${REPOSITORY_NAME}:${BRANCH}"
+        sh "docker image tag ${OWNER}/${REPOSITORY_NAME}:${BRANCH} ${DOCKER_REPOSITORY_NAME}:${REPOSITORY_NAME}-${BRANCH}"
+      }
+    }
+
+    stage('推送镜像') {
+      steps {
+        script {
+          docker.withRegistry("https://${DOCKER_REGISTRY_HOSTNAME}", "${DOCKER_REGISTRY_CREDENTIAL}") {
+            docker.image("${DOCKER_REPOSITORY_NAME}:${REPOSITORY_NAME}-${BRANCH}").push()
+          }
+        }
+
+      }
+    }
+
+  }
+  environment {
+    DOCKER_REGISTRY_HOSTNAME = "${TCR_REGISTRY_HOSTNAME}"
+    DOCKER_REGISTRY_CREDENTIAL = "${TCR_REGISTRY_CREDENTIAL}"
+    DOCKER_REPOSITORY_NAME = "${TCR_NAMESPACE_NAME}/${TCR_REPOSITORY_NAME}"
+    DOCKER_IMAGE_NAME = "${TCR_IMAGE_NAME}"
+  }
+}

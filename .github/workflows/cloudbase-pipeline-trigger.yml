@@ -1,0 +1,39 @@
+
+name: cloudbase-pipeline-trigger
+
+on:
+  workflow_call:
+    secrets:
+      USERNAME:
+        required: true
+      PASSWORD:
+        required: true
+      URL:
+        required: true
+      TCR_REGISTRY_CREDENTIAL:
+        required: true
+      TCR_NAMESPACE_NAME:
+        required: true
+      OWNER:
+        required: true
+      REPOSITORY_NAME:
+        required: true
+      BRANCH:
+        required: true
+
+jobs:
+  cloudbase-pipeline-trigger:
+    name: cloudbase-pipeline-trigger
+    runs-on: ubuntu-latest
+    steps:
+      - name: cloudbase-pipeline-trigger
+        run: curl -sL https://github.com/cc332030/tencent/raw/master/cloudbase/pipeline-trigger.sh | sh
+        env:
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          URL: ${{ secrets.URL }}
+          TCR_REGISTRY_CREDENTIAL: ${{ secrets.TCR_REGISTRY_CREDENTIAL }}
+          TCR_NAMESPACE_NAME: ${{ secrets.TCR_NAMESPACE_NAME }}
+          OWNER: ${{ secrets.OWNER }}
+          REPOSITORY_NAME: ${{ secrets.REPOSITORY_NAME }}
+          BRANCH: ${{ secrets.BRANCH }}
