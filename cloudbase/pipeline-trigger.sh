@@ -10,7 +10,7 @@ REPOSITORY_NAME: ${REPOSITORY_NAME}
 BRANCH: ${BRANCH}
 "
 
-curl -s -u ${USERNAME}:${PASSWORD} \
+curl -u ${USERNAME}:${PASSWORD} \
    -X POST "${URL}" \
    -H 'Content-Type: application/json' \
    -d "
