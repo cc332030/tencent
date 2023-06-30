@@ -21,6 +21,6 @@ jobs:
       URL: ${{ secrets.CLOUDBASE_URL }}
       TCR_REGISTRY_CREDENTIAL: ${{ secrets.TCR_REGISTRY_CREDENTIAL }}
       TCR_NAMESPACE_NAME: ${{ secrets.TCR_NAMESPACE_NAME }}
-      OWNER: ${{ secrets.OWNER }}
-      REPOSITORY_NAME: ${{ secrets.REPOSITORY_NAME }}
-      BRANCH: ${{ secrets.BRANCH }}
+      OWNER: ${{ github.actor }}
+      REPOSITORY_NAME: ${{ github.event.repository.name }}
+      BRANCH: ${{ github.ref_name }}
