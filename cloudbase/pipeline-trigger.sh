@@ -10,7 +10,7 @@ REPOSITORY_NAME: ${REPOSITORY_NAME}
 BRANCH: ${BRANCH}
 "
 
-curl -u ${USERNAME}:${PASSWORD} \
+curl -s  -u ${USERNAME}:${PASSWORD} \
    -v -X POST "${URL}" \
    -H 'Content-Type: application/json' \
    -d "
@@ -48,4 +48,4 @@ curl -u ${USERNAME}:${PASSWORD} \
             \"sensitive\": 0
         }
     ]
-}"
+}" > /dev/null
