@@ -24,12 +24,6 @@ on:
         required: true
       TCR_NAMESPACE_NAME:
         required: true
-      OWNER:
-        required: true
-      REPOSITORY_NAME:
-        required: true
-      BRANCH:
-        required: true
 
 jobs:
   cloudbase-pipeline-trigger:
