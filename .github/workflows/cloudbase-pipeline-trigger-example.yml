@@ -15,12 +15,13 @@ jobs:
   cloudbase-pipeline-trigger:
     uses: cc332030/tencent/.github/workflows/cloudbase-pipeline-trigger.yml@main
     needs: [ deploy ]
+    with:
+      owner: ${{ github.actor }}
+      repository-name: ${{ github.event.repository.name }}
+      branch: ${{ github.ref_name }}
     secrets:
       USERNAME: ${{ secrets.CLOUDBASE_USERNAME }}
       PASSWORD: ${{ secrets.CLOUDBASE_PASSWORD }}
       URL: ${{ secrets.CLOUDBASE_URL }}
       TCR_REGISTRY_CREDENTIAL: ${{ secrets.TCR_REGISTRY_CREDENTIAL }}
       TCR_NAMESPACE_NAME: ${{ secrets.TCR_NAMESPACE_NAME }}
-      OWNER: ${{ github.actor }}
-      REPOSITORY_NAME: ${{ github.event.repository.name }}
-      BRANCH: ${{ github.ref_name }}

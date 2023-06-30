@@ -3,6 +3,15 @@ name: cloudbase-pipeline-trigger
 
 on:
   workflow_call:
+    owner:
+      required: true
+      type: string
+    repository-name:
+      required: true
+      type: string
+    branch:
+      required: true
+      type: string
     secrets:
       USERNAME:
         required: true
@@ -34,6 +43,6 @@ jobs:
           URL: ${{ secrets.URL }}
           TCR_REGISTRY_CREDENTIAL: ${{ secrets.TCR_REGISTRY_CREDENTIAL }}
           TCR_NAMESPACE_NAME: ${{ secrets.TCR_NAMESPACE_NAME }}
-          OWNER: ${{ secrets.OWNER }}
-          REPOSITORY_NAME: ${{ secrets.REPOSITORY_NAME }}
-          BRANCH: ${{ secrets.BRANCH }}
+          OWNER: ${{ inputs.owner }}
+          REPOSITORY_NAME: ${{ inputs.repository-name }}
+          BRANCH: ${{ inputs.branch }}
