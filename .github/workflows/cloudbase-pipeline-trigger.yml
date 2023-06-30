@@ -3,15 +3,16 @@ name: cloudbase-pipeline-trigger
 
 on:
   workflow_call:
-    owner:
-      required: true
-      type: string
-    repository-name:
-      required: true
-      type: string
-    branch:
-      required: true
-      type: string
+    inputs:
+      owner:
+        required: true
+        type: string
+      repository-name:
+        required: true
+        type: string
+      branch:
+        required: true
+        type: string
     secrets:
       USERNAME:
         required: true
