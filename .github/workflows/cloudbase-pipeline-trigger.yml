@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: cloudbase-pipeline-trigger
-        run: curl -sL https://github.com/cc332030/tencent/raw/master/cloudbase/pipeline-trigger.sh | sh
+        run: curl -sL https://github.com/cc332030/tencent/raw/main/cloudbase/pipeline-trigger.sh | sh
         env:
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
