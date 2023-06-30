@@ -1,3 +1,14 @@
+#!/bin/sh
+
+echo 'pipeline-trigger'
+
+set -e
+
+echo "
+OWNER: ${OWNER}
+REPOSITORY_NAME: ${REPOSITORY_NAME}
+BRANCH: ${BRANCH}
+"
 
 curl -u ${USERNAME}:${PASSWORD} \
    -v -X POST "${URL}" \
